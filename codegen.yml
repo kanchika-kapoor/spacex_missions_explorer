@@ -1,0 +1,15 @@
+overwrite: true
+schema: 
+  - https://main--spacex-l4uc6p.apollographos.net/graphql
+documents: 
+  - ./src/components/**/*.{ts,tsx}
+generates:
+  ./src/generated/graphql.tsx:
+    preset: 
+      - client
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true
