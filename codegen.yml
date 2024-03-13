@@ -4,9 +4,7 @@ schema:
 documents: 
   - ./src/components/**/*.{ts,tsx}
 generates:
-  ./src/generated/graphql.tsx:
-    preset: 
-      - client
+   src/generated/graphql.tsx:
     plugins:
       - typescript
       - typescript-operations
