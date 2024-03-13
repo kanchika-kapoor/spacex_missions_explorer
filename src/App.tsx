@@ -7,7 +7,7 @@ const default_id:string = '5f8399fb818d8b59f5740d43'
 
 const App = ()=>{
   const [id, setId] = useState(default_id)
-  const handleIdChange = React.useCallback((newId:string) => {
+  const handleIdChange = useCallback((newId:string) => {
     setId(newId)
   }, [])
 
