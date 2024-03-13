@@ -26,12 +26,12 @@
   
   .LaunchProfile__image-list {
     display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, min(15em, 100%));
     margin-top: 40px;
     padding-bottom: 100px;
   }
   
   .LaunchProfile__image {
-    width: 100%;
+    width: min(15em, 100%);
   }

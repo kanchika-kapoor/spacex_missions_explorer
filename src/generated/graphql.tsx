@@ -1325,7 +1325,7 @@ export type Uuid_Comparison_Exp = {
 export type LaunchListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LaunchListQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', mission_id?: Array<string | null> | null, mission_name?: string | null, launch_year?: string | null } | null> | null };
+export type LaunchListQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', id?: string | null, mission_name?: string | null, launch_year?: string | null } | null> | null };
 
 export type LaunchProfileQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -1338,7 +1338,7 @@ export type LaunchProfileQuery = { __typename?: 'Query', launch?: { __typename?:
 export const LaunchListDocument = gql`
     query LaunchList {
   launches {
-    mission_id
+    id
     mission_name
     launch_year
   }
