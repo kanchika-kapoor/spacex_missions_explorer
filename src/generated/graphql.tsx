@@ -1322,6 +1322,11 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']['input']>>;
 };
 
+export type LaunchListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LaunchListQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', mission_id?: Array<string | null> | null, mission_name?: string | null, launch_year?: string | null } | null> | null };
+
 export type LaunchProfileQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -1329,12 +1334,48 @@ export type LaunchProfileQueryVariables = Exact<{
 
 export type LaunchProfileQuery = { __typename?: 'Query', launch?: { __typename?: 'Launch', id?: string | null, mission_name?: string | null, launch_year?: string | null, launch_success?: boolean | null, details?: string | null, launch_site?: { __typename?: 'LaunchSite', site_name?: string | null } | null, rocket?: { __typename?: 'LaunchRocket', rocket_name?: string | null, rocket_type?: string | null } | null, links?: { __typename?: 'LaunchLinks', flickr_images?: Array<string | null> | null } | null } | null };
 
-export type LaunchListQueryVariables = Exact<{ [key: string]: never; }>;
 
+export const LaunchListDocument = gql`
+    query LaunchList {
+  launches {
+    mission_id
+    mission_name
+    launch_year
+  }
+}
+    `;
 
-export type LaunchListQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', mission_id?: Array<string | null> | null, mission_name?: string | null, launch_year?: string | null } | null> | null };
-
-
+/**
+ * __useLaunchListQuery__
+ *
+ * To run a query within a React component, call `useLaunchListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLaunchListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLaunchListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useLaunchListQuery(baseOptions?: Apollo.QueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
+      }
+export function useLaunchListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
+        }
+export function useLaunchListSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
+        }
+export type LaunchListQueryHookResult = ReturnType<typeof useLaunchListQuery>;
+export type LaunchListLazyQueryHookResult = ReturnType<typeof useLaunchListLazyQuery>;
+export type LaunchListSuspenseQueryHookResult = ReturnType<typeof useLaunchListSuspenseQuery>;
+export type LaunchListQueryResult = Apollo.QueryResult<LaunchListQuery, LaunchListQueryVariables>;
 export const LaunchProfileDocument = gql`
     query LaunchProfile($id: ID!) {
   launch(id: $id) {
@@ -1389,44 +1430,3 @@ export type LaunchProfileQueryHookResult = ReturnType<typeof useLaunchProfileQue
 export type LaunchProfileLazyQueryHookResult = ReturnType<typeof useLaunchProfileLazyQuery>;
 export type LaunchProfileSuspenseQueryHookResult = ReturnType<typeof useLaunchProfileSuspenseQuery>;
 export type LaunchProfileQueryResult = Apollo.QueryResult<LaunchProfileQuery, LaunchProfileQueryVariables>;
-export const LaunchListDocument = gql`
-    query LaunchList {
-  launches {
-    mission_id
-    mission_name
-    launch_year
-  }
-}
-    `;
-
-/**
- * __useLaunchListQuery__
- *
- * To run a query within a React component, call `useLaunchListQuery` and pass it any options that fit your needs.
- * When your component renders, `useLaunchListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useLaunchListQuery({
- *   variables: {
- *   },
- * });
- */
-export function useLaunchListQuery(baseOptions?: Apollo.QueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
-      }
-export function useLaunchListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
-        }
-export function useLaunchListSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<LaunchListQuery, LaunchListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<LaunchListQuery, LaunchListQueryVariables>(LaunchListDocument, options);
-        }
-export type LaunchListQueryHookResult = ReturnType<typeof useLaunchListQuery>;
-export type LaunchListLazyQueryHookResult = ReturnType<typeof useLaunchListLazyQuery>;
-export type LaunchListSuspenseQueryHookResult = ReturnType<typeof useLaunchListSuspenseQuery>;
-export type LaunchListQueryResult = Apollo.QueryResult<LaunchListQuery, LaunchListQueryVariables>;
